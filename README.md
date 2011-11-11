@@ -94,6 +94,30 @@ also will lookup styles before generating the object.
     T.Tab()
     T.Window()
 
+Titanium Build Plugin
+---------------------
+
+Assuming you have Tylus setup correctly in your path, you can use the plugin in
+the plugins/ directory of the source tree with Titanium to automate the stylus
+compilation every time Titanium compiles your app.  To use this, copy the
+plugins directory into your application project directory.  It should be next
+to Resources and your tiapp.xml:
+
+    Resources
+    build
+    plugins
+    tiapp.xml
+    manifest
+
+etc.  Then, edit your tiapp.xml, adding the following into your <ti:app>:
+
+    <plugins>
+          <plugin version="0.0">tylus</plugin> 
+    </plugins>
+
+Now, when you compile your app, your .styl files will be compiled into 
+style.js!
+
 Stylus example
 --------------
 
