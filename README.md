@@ -1,12 +1,38 @@
 Tylus - Titanium Stylus
 =======================
 
+Drop lib/tylus.js into your Titanium Resources directory.  Install tylus
+with npm
+    git clone tylus
+    npm install tylus
+Make a test .styl file
+    Label
+      #hello
+        textAlign center
+        color #00ffff
+        font
+          fontSize 20
+          fontWeight bold
+        [device=iphone]
+          text 'Hello from iPhone'
+        [device=ipad]
+          text 'Hello from iPad'
+and place it in your Titanium Resources directory.  Then run
+    tylus path/to/Resources
+and you'll have a style.js file.  In your app.js,
+    Ti.include('tylus.js');
+    T.load('style');
+    var win, label ;
+    win = T.Window();
+    label = T.Label({style: '#hello'});
+    win.add(label);
+    win.open();
+and you're good to go.
+
 Real stylus backed style sheets for Titanium Mobile.  Redux inspired;
 RJSS / JSS like, but uses Stylus.  .styl files are compiled to css with
 Stylus, then compiled to a Javascript object.  This object is included at
-runtime and styles are looked up in the object, so Tylus is fast.  Setting
-styles consists of a couple of hash loopus (depending on how specific you
-are about your styles).
+runtime and styles are looked up in the object.
 
 Functional construction of all ti objects in the T namespace
 ------------------------------------------------------------
@@ -29,11 +55,11 @@ T.Window()
 Stylus example
 --------------
 
-.dashItem
-  [iphone]
+#myitem
+  [device=phone]
     top 84
     width 85
-  [ipad]
+  [device=ipad]
     top 90
     width 90
   font
