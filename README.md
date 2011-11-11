@@ -37,10 +37,41 @@ and you'll have a style.js file.  In your app.js,
 
 and you're good to go.
 
-Real stylus backed style sheets for Titanium Mobile.  Redux inspired;
-RJSS / JSS like, but uses Stylus.  .styl files are compiled to css with
-Stylus, then compiled to a Javascript object.  This object is included at
-runtime and styles are looked up in the object.
+Features
+--------
+
+Supports creation
+of objects with a style property or with id, class, classNames, or classes
+property:
+
+    label = T.Label({style: '#mylabel .special'});
+    win = T.Window({id: 'Settings'});
+
+Conditioning on device type:
+
+    // something.styl
+    Label
+      [device=iphone]
+        text 'iphone'
+      [device=ipad]
+        text 'ipad'
+
+
+    // app.js
+    label = T.Label();
+    // will say 'iphone' on iphone and 'ipad' on ipad
+
+Object properties are also supported:
+
+    Label
+      font
+        fontSize 20
+        fontWeight bold
+
+even though it doesn't make sense from a css standpoint, it's still quite
+intuitive.
+
+And, of course, all of the awesome features of [Stylus](http://learnboost.github.com/stylus/)
 
 Functional construction of all ti objects in the T namespace
 ------------------------------------------------------------
@@ -48,17 +79,17 @@ Functional construction of all ti objects in the T namespace
 These much nicer looking constructors are not only a reasonable length but
 also will lookup styles before generating the object.
 
-T.DashItem()
-T.Dash()
-T.Table()
-T.TableRow()
-T.TableSection()
-T.Label()
-T.Button()
-T.ImageView()
-T.Picker()
-T.Tab()
-T.Window()
+    T.DashItem()
+    T.Dash()
+    T.Table()
+    T.TableRow()
+    T.TableSection()
+    T.Label()
+    T.Button()
+    T.ImageView()
+    T.Picker()
+    T.Tab()
+    T.Window()
 
 Stylus example
 --------------
