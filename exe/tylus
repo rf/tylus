@@ -21,6 +21,18 @@ objProps = [
    'transform'
 ];
 
+function extend (to, from) {
+   var item;
+   for (item in from) {
+      if (typeof from[item] === 'object' && from[item] !== null) {
+         to[item] = to[item] || {};
+         extend(to[item], from[item]); // recurse
+      } else {
+         to[item] = from[item];
+      }
+   }
+}
+
 function resolveSelectors (selectors) {
    // find where we want to put the props
    var ret = out, objProp = false;
@@ -87,7 +99,7 @@ function processCSS (err, css, cb) {
          memo[split[0]] = split[1];
          return memo;
       }, {});
-      _.extend(target, propObj);
+      extend(target, propObj);
    });
    cb(null);
 }

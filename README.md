@@ -52,16 +52,14 @@ property:
 
 Conditioning on device type:
 
-    // something.styl
     Label
       [device=iphone]
         text 'iphone'
       [device=ipad]
         text 'ipad'
 
+and in your app.js:
 
-
-    // app.js
     label = T.Label();
     // will say 'iphone' on iphone and 'ipad' on ipad
 
