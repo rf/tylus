@@ -25,7 +25,8 @@ and place it in your Titanium Resources directory.  Then run
 
     tylus path/to/Resources
 
-and you'll have a style.js file.  In your app.js,
+and you'll have a style.js file.  Copy tylus/lib/tylus.js into your Resources
+directory, then, in app.js:
 
     Ti.include('tylus.js');
     T.load('style');
