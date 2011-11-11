@@ -1,8 +1,7 @@
 Tylus - Titanium Stylus
 =======================
 
-Drop lib/tylus.js into your Titanium Resources directory.  Install tylus
-with npm
+Install tylus with npm
 
     git clone git://github.com/russfrank/tylus.git
     npm install tylus
