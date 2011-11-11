@@ -60,6 +60,7 @@ Conditioning on device type:
         text 'ipad'
 
 
+
     // app.js
     label = T.Label();
     // will say 'iphone' on iphone and 'ipad' on ipad
@@ -82,17 +83,21 @@ Functional construction of all ti objects in the T namespace
 These much nicer looking constructors are not only a reasonable length but
 also will lookup styles before generating the object.
 
-    T.DashItem()
     T.Dash()
     T.Table()
     T.TableRow()
-    T.TableSection()
     T.Label()
     T.Button()
-    T.ImageView()
-    T.Picker()
+    T.Image()
     T.Tab()
     T.Window()
+    T.ScrollAble()
+    T.AlertDialog()
+
+See tylus.js in lib/ (ie, the file that should be in your Titanium Resources
+directory) for the map of nice names to crappy Titanium names.  Some are
+slightly modified.  'View' is usually removed.  The matrices specify dimension
+on the end.  PickerColumn is shortened to PickerCol, etc.
 
 Titanium Build Plugin
 ---------------------
