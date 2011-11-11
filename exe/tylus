@@ -109,7 +109,7 @@ function main () {
       process.exit(1);
    }
    walker = walk.walk(process.argv[2]);
-   console.log('walking ' + process.argv[2]);
+   console.log('exploring ' + process.argv[2]);
    walker.on('file', function (root, stats, next) {
       var filename = stats.name;
       if (stats.name.split('.').pop() !== 'styl') {
@@ -133,7 +133,8 @@ function main () {
          });
       }, function (err) {
          if (err) {
-            throw err;
+            console.error(err.message);
+            process.exit(1);
          }
          console.log('files loaded, processing');
          async.forEach(_.keys(fileData), function (item, cb) {
@@ -147,7 +148,8 @@ function main () {
             );
          }, function (err) {
             if (err) {
-               throw err;
+               console.error(err.message);
+               process.exit(1);
             }
             console.log('writing file ' + process.argv[2] + '/style.js');
             writeFileSync(

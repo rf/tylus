@@ -1,6 +1,9 @@
 Tylus - Titanium Stylus
 =======================
 
+Note: this is super super beta.  It might be crappy, slow, and mess things up.
+Please test and report issues!
+
 Install tylus with npm
 
     git clone git://github.com/russfrank/tylus.git
