@@ -3,9 +3,12 @@ Tylus - Titanium Stylus
 
 Drop lib/tylus.js into your Titanium Resources directory.  Install tylus
 with npm
+
     git clone tylus
     npm install tylus
+
 Make a test .styl file
+
     Label
       #hello
         textAlign center
@@ -17,9 +20,13 @@ Make a test .styl file
           text 'Hello from iPhone'
         [device=ipad]
           text 'Hello from iPad'
+
 and place it in your Titanium Resources directory.  Then run
+
     tylus path/to/Resources
+
 and you'll have a style.js file.  In your app.js,
+
     Ti.include('tylus.js');
     T.load('style');
     var win, label ;
@@ -27,6 +34,7 @@ and you'll have a style.js file.  In your app.js,
     label = T.Label({style: '#hello'});
     win.add(label);
     win.open();
+
 and you're good to go.
 
 Real stylus backed style sheets for Titanium Mobile.  Redux inspired;
@@ -55,22 +63,22 @@ T.Window()
 Stylus example
 --------------
 
-#myitem
-  [device=phone]
-    top 84
-    width 85
-  [device=ipad]
-    top 90
-    width 90
-  font
-    fontSize 13
-    fontWeight bold
-    fontFamily 'Helvetica Neue'
-
-Label
-   width 100
-   height 200
-   [device=iphone]
-      text "This is an iPhone!"
-   [device=ipad]
-      text "this is an ipad!"
+    #myitem
+      [device=phone]
+        top 84
+        width 85
+      [device=ipad]
+        top 90
+        width 90
+      font
+        fontSize 13
+        fontWeight bold
+        fontFamily 'Helvetica Neue'
+    
+    Label
+       width 100
+       height 200
+       [device=iphone]
+          text "This is an iPhone!"
+       [device=ipad]
+          text "this is an ipad!"
