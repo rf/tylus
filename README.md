@@ -4,9 +4,8 @@ Tylus - Titanium Stylus
 Note: this is super super beta.  It might be crappy, slow, and mess things up.
 Please test and report issues!
 
-Currently the style resolver is very naive.  The algorithm will often miss
-classes depending on how you order things.  I'm in the process of reworking
-the algorithm to be more predictable.
+Currently the style resolver is very naive.  If you put a device conditional
+in the root it will break things, so make these the children of other objects.
 
 Install tylus with npm
 
