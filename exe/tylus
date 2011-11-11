@@ -68,13 +68,22 @@ function processCSS (err, css, cb) {
    reg = /([a-zA-Z \.#].*)\{(.*)\}/g;
    result = css.match(reg);
    result.forEach(function(value) {
-      var selectors, properties, split, target, propObj;
+      var selectors, properties, split, target, propObj, c;
       split = value.split('{');
       selectors = split[0].split(' ');
       properties = split[1].slice(0, -1).split(';');
       target = resolveSelectors(selectors);
       propObj = _.reduce(properties, function (memo, value) {
          var split = value.split(':');
+         // dequote
+         if (split[1] !== undefined) {
+            if (split[1].charAt(0) === split[1].charAt(split[1].length-1)) {
+               c = split[1].charAt(0);
+               if (c === "'" || c === '"') {
+                  split[1] = split[1].slice(1, -1);
+               }
+            }
+         }
          memo[split[0]] = split[1];
          return memo;
       }, {});
