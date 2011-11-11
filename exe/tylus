@@ -77,7 +77,7 @@ function processCSS (err, css, cb) {
       return;
    }
    var reg, result;
-   reg = /([a-zA-Z \.#].*)\{(.*)\}/g;
+   reg = /([a-zA-Z \.#\[\]].*)\{(.*)\}/g;
    result = css.match(reg);
    result.forEach(function(value) {
       var selectors, properties, split, target, propObj, c;

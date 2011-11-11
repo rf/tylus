@@ -4,6 +4,10 @@ Tylus - Titanium Stylus
 Note: this is super super beta.  It might be crappy, slow, and mess things up.
 Please test and report issues!
 
+Currently the style resolver is very naive.  The algorithm will often miss
+classes depending on how you order things.  I'm in the process of reworking
+the algorithm to be more predictable.
+
 Install tylus with npm
 
     git clone git://github.com/russfrank/tylus.git
