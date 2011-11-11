@@ -1,0 +1,153 @@
+#!/usr/bin/env node
+
+var stylus = require('stylus'),
+    out = {},
+    objProps,
+    _ = require('underscore'),
+    walk = require('walk'),
+    async = require('async'),
+    readFile = require('fs').readFile,
+    writeFileSync = require('fs').writeFileSync,
+    statSync = require('fs').statSync;
+
+objProps = [
+   'font', 
+   'backgroundGradient',
+   'center', 
+   'anchorPoint', 
+   'animatedCenterPoint',
+   'shadowOffset',
+   'size',
+   'transform'
+];
+
+function resolveSelectors (selectors) {
+   // find where we want to put the props
+   var ret = out, objProp = false;
+   selectors.forEach(function (selector) {
+      if (selector.charAt(0) === '[') {
+         // it's a condition thing, take a looksie at that
+         selector = selector.slice(1, -1);
+         selector = selector.split('=');
+         // now selector[0] is device and selector[1] is iphone or whatever
+         // advance down ret by selector
+         selector.forEach(function (value) {
+            ret[value] = ret[value] || {};
+            ret = ret[value];
+         });
+      } else {
+         if (_.contains(objProps, selector)) {
+            // its an object property so it shouldn't get its own subnode
+            ret.self = ret.self || {};
+            ret.self[selector] = ret.self[selector] || {};
+            ret = ret.self[selector];
+            objProp = true;
+            return ret;
+         } else {
+            // regular sub property, advance ret
+            ret[selector] = ret[selector] || {};
+            ret = ret[selector];
+         }
+      }
+   });
+   if (objProp) {
+      return ret;
+   } else {
+      ret.self = ret.self || {};
+      return ret.self;
+   }
+}
+
+//stylus.render(str, {filename: 'test.styl', compress:true}, function (err, css) {
+function processCSS (err, css, cb) {
+   if (err) {
+      cb(err);
+      return;
+   }
+   var reg, result;
+   reg = /([a-zA-Z \.#].*)\{(.*)\}/g;
+   result = css.match(reg);
+   result.forEach(function(value) {
+      var selectors, properties, split, target, propObj;
+      split = value.split('{');
+      selectors = split[0].split(' ');
+      properties = split[1].slice(0, -1).split(';');
+      target = resolveSelectors(selectors);
+      propObj = _.reduce(properties, function (memo, value) {
+         var split = value.split(':');
+         memo[split[0]] = split[1];
+         return memo;
+      }, {});
+      _.extend(target, propObj);
+   });
+   cb(null);
+}
+
+function main () {
+   // argv[1] contains directory
+   var files = [],
+       walker,
+       fileData = {},
+       stat;
+   try {
+      process.argv[2];
+      stat = statSync(process.argv[2]).isDirectory();
+      if (!stat) {
+         throw ''; 
+      }
+   } catch (e) {
+      console.log('usage: tylus srcdir');
+      process.exit(1);
+   }
+   walker = walk.walk(process.argv[2]);
+   console.log('walking ' + process.argv[2]);
+   walker.on('file', function (root, stats, next) {
+      var filename = stats.name;
+      if (stats.name.split('.').pop() !== 'styl') {
+         // only process .styl files
+         next();
+         return;
+      }
+      files.push(root + '/' + filename);
+      next();
+   });
+   walker.on('end', function () {
+      async.forEach(files, function (item, cb) {
+         console.log('loading ' + item);
+         readFile(item, function (err, data) {
+            if (err) {
+               cb(err);
+               return;
+            }
+            fileData[item] = data;
+            cb(null);
+         });
+      }, function (err) {
+         if (err) {
+            throw err;
+         }
+         console.log('files loaded, processing');
+         async.forEach(_.keys(fileData), function (item, cb) {
+            console.log('stylusing ' + item);
+            stylus.render(
+               String(fileData[item]), 
+               {filename: item, compress: true}, 
+               function (err, css) {
+                  processCSS(err, css, cb);
+               }
+            );
+         }, function (err) {
+            if (err) {
+               throw err;
+            }
+            console.log('writing file ' + process.argv[2] + '/style.js');
+            writeFileSync(
+               process.argv[2]+"/style.js", 
+               "exports.styles="+JSON.stringify(out) + ";"
+            );
+         });
+      }); 
+   });
+}
+
+main();

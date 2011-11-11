@@ -1,0 +1,10 @@
+{
+   "name"         : "tylus",
+   "description"  : "Titanium stylesheet magic via Stylus",
+   "version"      : "0.0.0",
+   "author"       : "Russ Frank <russ.frank@rutgers.edu>",
+   "keywords"     : ["css", "mobile", "titanium"],
+   "engines"      : {"node": "> 0.4.x"},
+   "bin"          : {"tylus": "./exe/tylus"},
+   "dependencies" : {"stylus": "0.19.0"}
+}
