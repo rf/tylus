@@ -34,7 +34,6 @@ and you'll have a style.js file.  Copy tylus/lib/tylus.js into your Resources
 directory, then, in app.js:
 
     Ti.include('tylus.js');
-    T.load('style');
     var win, label ;
     win = T.Window();
     label = T.Label({style: '#hello'});
