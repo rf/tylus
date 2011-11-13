@@ -4,8 +4,8 @@ Tylus - Titanium Stylus
 Note: this is super super beta.  It might be crappy, slow, and mess things up.
 Please test and report issues!
 
-Currently the style resolver is very naive.  If you put a device conditional
-in the root it will break things, so make these the children of other objects.
+Note 2: Don't put a device conditional
+in the root, it will break things.  Make these the children of other objects.
 
 Install tylus with npm
 
@@ -145,3 +145,10 @@ Stylus example
           text "This is an iPhone!"
        [device=ipad]
           text "this is an ipad!"
+       #myid
+         text "some id label thing"
+
+License
+-------
+
+MIT.
