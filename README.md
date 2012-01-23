@@ -77,7 +77,7 @@ intuitive.
 
 And, of course, all of the awesome features of [Stylus](http://learnboost.github.com/stylus/)
 
-# # JS Evaluation
+### JS Evaluation
 
 If you need to have a style consist of javascript, wrap it in quotes and
 backticks:
@@ -91,7 +91,7 @@ backticks:
 
 The javascript will be evaluated the first time the style is looked up.
 
-# # Augmented factory methods of all ti objects in the T namespace
+### Augmented factory methods of all ti objects in the T namespace
 
 These much nicer looking constructors are not only a reasonable length but
 also will lookup styles before generating the object.
