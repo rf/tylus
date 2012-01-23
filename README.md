@@ -77,8 +77,21 @@ intuitive.
 
 And, of course, all of the awesome features of [Stylus](http://learnboost.github.com/stylus/)
 
-Functional construction of all ti objects in the T namespace
-------------------------------------------------------------
+# # JS Evaluation
+
+If you need to have a style consist of javascript, wrap it in quotes and
+backticks:
+
+    Table
+        .grouped
+            [device=iphone]
+                style "`Ti.UI.iPhone.TableViewStyle.GROUPED`"
+                backgroundColor transparent
+                rowBackgroundColor white
+
+The javascript will be evaluated the first time the style is looked up.
+
+# # Augmented factory methods of all ti objects in the T namespace
 
 These much nicer looking constructors are not only a reasonable length but
 also will lookup styles before generating the object.
@@ -93,6 +106,18 @@ also will lookup styles before generating the object.
     T.Window()
     T.ScrollAble()
     T.AlertDialog()
+
+They also provide nicer functions for add/removeEventListener and fireEvent:
+
+    object.on('event', handler);
+    object.off('event', handler);
+    object.fire('event');
+
+The `.on` function will also wrap the handler in an exception handler.  When
+exceptions occur in an event callback, Titanium logs an error to the console
+but does not display an error message; this can make debugging on a device
+difficult.  The `T` object exposes a function `setDebugMode()` which can be
+used to enable or disable this feature.
 
 See tylus.js in lib/ (ie, the file that should be in your Titanium Resources
 directory) for the map of nice names to crappy Titanium names.  Some are
