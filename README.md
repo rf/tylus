@@ -7,6 +7,8 @@ Please test and report issues!
 Note 2: Don't put a device conditional
 in the root, it will break things.  Make these the children of other objects.
 
+New: experimental support for less css engine!
+
 Install tylus with npm
 
     git clone git://github.com/russfrank/tylus.git
