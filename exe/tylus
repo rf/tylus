@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 var stylus = require('stylus'),
+    less = require('less'),
+    lessparser,
     out = {},
     objProps,
     _ = require('underscore'),
@@ -70,7 +72,6 @@ function resolveSelectors (selectors) {
    }
 }
 
-//stylus.render(str, {filename: 'test.styl', compress:true}, function (err, css) {
 function processCSS (err, css, cb) {
    if (err) {
       cb(err);
@@ -120,45 +121,65 @@ function main () {
       console.log('usage: tylus srcdir');
       process.exit(1);
    }
+
    walker = walk.walk(process.argv[2]);
    console.log('exploring ' + process.argv[2]);
+
    walker.on('file', function (root, stats, next) {
-      var filename = stats.name;
-      if (stats.name.split('.').pop() !== 'styl') {
-         // only process .styl files
+      var filename = stats.name,
+          ext = stats.name.split('.').pop();
+      if (ext !== 'styl' && ext !== 'less') {
+         // only process .styl and .less files
          next();
          return;
       }
-      files.push(root + '/' + filename);
+      files.push({name: root + '/' + filename, ext: ext});
       next();
    });
+
    walker.on('end', function () {
       async.forEach(files, function (item, cb) {
-         console.log('loading ' + item);
-         readFile(item, function (err, data) {
+         console.log('loading ' + item.name);
+         readFile(item.name, function (err, data) {
             if (err) {
                cb(err);
                return;
             }
-            fileData[item] = data;
+            fileData[item.name] = {data: data, ext: item.ext};
             cb(null);
          });
+
       }, function (err) {
          if (err) {
             console.error(err.message);
             process.exit(1);
          }
+
          console.log('files loaded, processing');
          async.forEach(_.keys(fileData), function (item, cb) {
-            console.log('stylusing ' + item);
-            stylus.render(
-               String(fileData[item]), 
-               {filename: item, compress: true}, 
-               function (err, css) {
-                  processCSS(err, css, cb);
-               }
-            );
+            if (fileData[item].ext === 'styl') {
+               console.log('stylusing ' + item);
+               stylus.render(
+                  String(fileData[item].data), 
+                  {filename: item, compress: true}, 
+                  function (err, css) {
+                     processCSS(err, css, cb);
+                  }
+               );
+            } 
+            
+            else if (fileData[item].ext === 'less') {
+               console.log('lessing ' + item);
+               lessparser = new less.Parser({
+                  paths: ['.', './lib'],
+                  filename: item
+               });
+               lessparser.parse(String(fileData[item].data), function (err, tree) {
+                  processCSS(err, tree.toCSS({compress: true}), cb);
+               });
+            }
          }, function (err) {
+
             if (err) {
                console.error(err.message);
                process.exit(1);
@@ -169,6 +190,7 @@ function main () {
                "exports.styles="+JSON.stringify(out) + ";"
             );
          });
+
       }); 
    });
 }
