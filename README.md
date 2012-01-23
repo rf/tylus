@@ -115,8 +115,8 @@ They also provide nicer functions for add/removeEventListener and fireEvent:
     object.off('event', handler);
     object.fire('event');
 
-The `.on` function will also wrap the handler in an exception handler.  
-This exception handler will simply `alert()` the exception when it is caught. When
+The `.on` function will also wrap the handler in an exception handler. This
+exception handler will simply `alert()` the exception when it is caught. When
 exceptions occur in an event callback, Titanium logs an error to the console
 but does not display an error message; this can make debugging on a device
 difficult.  The `T` object exposes a function `setDebugMode()` which can be
