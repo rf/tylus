@@ -91,7 +91,7 @@ backticks:
 
 The javascript will be evaluated the first time the style is looked up.
 
-### Augmented factory methods of all ti objects in the T namespace
+### Augmented factory methods of all Ti.UI objects in the T namespace
 
 These much nicer looking constructors are not only a reasonable length but
 also will lookup styles before generating the object.
@@ -124,6 +124,23 @@ directory) for the map of nice names to crappy Titanium names.  Some are
 slightly modified.  'View' is usually removed.  The matrices specify dimension
 on the end.  PickerColumn is shortened to PickerCol, etc.
 
+Unfortunately, replacing constructors like this *will cause some problems*.
+The Titanium build system attempts to detect which portions of the framework
+you are using by essentially greping your source for the 
+`Ti.xx.createSomeObject` factory methods.  Since you're using the factory
+methods I provide in `T`, Titanium will think you aren't using those
+components.  So, in some file of your project, simply list out the
+constructors you'll need.  You can do this per-file or once in a single file
+of your project:
+
+    Ti.UI.createLabel
+    Ti.UI.createTableView
+    Ti.UI.createTableViewRow
+
+These references to Javascript functions will be ignored by the interpreter
+on the device, but will let the Ti build system know to include those
+parts of the framework in the build.
+
 Titanium Build Plugin
 ---------------------
 
@@ -148,7 +165,7 @@ etc.  Then, edit your tiapp.xml, adding the following into your <ti:app>:
 Now, when you compile your app, your .styl files will be compiled into 
 style.js!
 
-Stylus example
+Example
 --------------
 
     #myitem
