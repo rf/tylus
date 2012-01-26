@@ -38,20 +38,21 @@ directory, then, in app.js:
     Ti.include('tylus.js');
     var win, label ;
     win = T.Window();
-    label = T.Label({style: '#hello'});
+    label = T.Label({tyle: '#hello'});
     win.add(label);
     win.open();
 
-and you're good to go.
+and you're good to go.  Note that the property is `tyle`, not `style`, to
+avoid a conflict with Titanium properties called `style`.
 
 Features
 --------
 
 Supports creation
-of objects with a style property or with id, class, classNames, or classes
+of objects with a `tyle` property or with id, class, classNames, or classes
 property:
 
-    label = T.Label({style: '#mylabel .special'});
+    label = T.Label({tyle: '#mylabel .special'});
     win = T.Window({id: 'Settings'});
 
 Conditioning on device type:
