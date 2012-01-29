@@ -123,6 +123,11 @@ but does not display an error message; this can make debugging on a device
 difficult.  The `T` object exposes a function `setDebugMode()` which can be
 used to enable or disable this feature.
 
+This feature will make removing event handlers slow, since we have to lookup
+the wrapper function that was created when the event handler was added. Make
+sure to disable it in production modes, unless you're okay with a small
+performance hit when removing handlers in exchange for the exception handling.
+
 See tylus.js in lib/ (ie, the file that should be in your Titanium Resources
 directory) for the map of nice names to crappy Titanium names.  Some are
 slightly modified.  'View' is usually removed.  The matrices specify dimension
