@@ -7,6 +7,8 @@ Please test and report issues!
 Note 2: Don't put a device conditional
 in the root, it will break things.  Make these the children of other objects.
 
+Note 3: if you need a newline, use `<br>`.
+
 New: experimental support for less css engine!
 
 Install tylus with npm
@@ -94,6 +96,24 @@ backticks:
 
 The javascript will be evaluated the first time the style is looked up.
 
+### String Interpolation
+
+If tylus can find underscore.js, underscore's string interpolation will be
+applied to your objects' `title` and `text` properties.  You specify the
+strings in a `strings` object passed into the constructor.  For example:
+
+```
+Label
+   .special
+      text "This special label says <%=message%>!"
+```
+
+meanwhile, in some javascript file
+
+```
+var stuff = T.Label({tyle: '.special', strings: {message: 'awesome stuff'}});
+```
+
 ### Augmented factory methods of all Ti.UI objects in the T namespace
 
 These much nicer looking constructors are not only a reasonable length but
@@ -121,7 +141,7 @@ exception handler will simply `alert()` the exception when it is caught. When
 exceptions occur in an event callback, Titanium logs an error to the console
 but does not display an error message; this can make debugging on a device
 difficult.  The `T` object exposes a function `setDebugMode()` which can be
-used to enable or disable this feature.
+used to enable or disable this feature.  It's disabled by default.
 
 This feature will make removing event handlers slow, since we have to lookup
 the wrapper function that was created when the event handler was added. Make
@@ -173,6 +193,15 @@ etc.  Then, edit your tiapp.xml, adding the following into your <ti:app>:
 
 Now, when you compile your app, your .styl files will be compiled into 
 style.js!
+
+
+Manual Compilation
+-------------------
+
+You can manually compile styles by running `tylus` with your Resources
+directory as the parameter:
+
+    tylus Resources
 
 Example
 --------------
