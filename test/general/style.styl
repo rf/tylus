@@ -1,7 +1,7 @@
 Label
    left 15
-   text 'base label'
    color blue
+   text 'base Label text'
    font
       fontSize 15
       fontStyle bold
@@ -14,17 +14,17 @@ Label
       [device=ipad]
          top 100
    #someid
+      text "hello there <%= message %>"
       .foobarbaz
          text "something"
          font
             fontSize 15
       .asdf
          text "class asdf"
+      .class2
+         right 34
+         computedProperty "`console.toString() + ' is great'`"
    [device=iphone]
       [density=high]
          [someprop=someval]
             backgroundColor #fefefe
-
-TableRow
-   .special
-      text "this row says <%=message"

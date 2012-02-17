@@ -29,32 +29,50 @@ suite.addBatch({
          class1: {
             topic: function () {
                T.setProperty('someprop', 'someval');
-               return T.getStyles('Label', {tyle: '.class1'});
+               return T.getProps('Label', {tyle: '.class1'});
             },
 
-            'handled class property': function (topic) {
+            'class property': function (topic) {
                assert.equal(topic.text, "why hello there");
             },
 
-            'handled base property': function (topic) {
+            'base property': function (topic) {
                assert.equal(topic.color, '#00f');
             },
 
-            'handled object property': function (topic) {
+            'object property': function (topic) {
                assert.equal(topic.font.fontSize, 15);
                assert.equal(topic.font.fontStyle, 'bold');
             },
 
-            'handled iphone conditional': function (topic) {
+            'iphone conditional': function (topic) {
                assert.equal(topic.top, 40);
             },
 
-            'handled nested version conditional': function (topic) {
+            'nested version conditional': function (topic) {
                assert.equal(topic.left, 27);
             },
 
-            'handled nested custom conditional': function (topic) {
+            'nested custom conditional': function (topic) {
                assert.equal(topic.backgroundColor, '#fefefe');
+            }
+         },
+
+         'someid class2': {
+            topic: function () {
+               return T.getProps('Label', {tyle: '#someid .class2', strings: {message: "foo123"}});
+            },
+
+            'class property': function (topic) {
+               assert.equal(topic.right, 34);
+            },
+
+            'string interpolation': function (topic) {
+               assert.equal(topic.text, "hello there foo123");
+            },
+
+            'evaluation': function (topic) {
+               assert.equal(topic.computedProperty, "[object Object] is great");
             }
          }
 
