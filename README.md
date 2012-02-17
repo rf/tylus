@@ -53,6 +53,8 @@ property:
     label = T.Label({tyle: '#mylabel .special'});
     win = T.Window({id: 'Settings'});
 
+### Platform Conditioning
+
 Conditioning on device type:
 
     Label
@@ -65,6 +67,19 @@ and in your app.js:
 
     label = T.Label();
     // will say 'iphone' on iphone and 'ipad' on ipad
+
+You can also condition on other Ti.Platform variables:
+
+    Label
+      [version=5.0]
+         text 'ios 5.0 is great huh'
+      [version=4.0]
+         text 'you should upgrade to get newwstand its the best'
+
+You can also set such conditionable properties manually with the
+`setProperty` function.  See the 'Reference' section below for details.
+
+### Object Properties
 
 Object properties are also supported:
 
@@ -280,6 +295,19 @@ Example
 * setDebugMode (value) - sets the debug mode to `value`.  If `value` is
   truthy, event handlers placed on emitters will be wrapped in an
   exception handler.  Defaults to false.
+* setProperty (prop, val) - sets `prop` to `val` in the internal property
+  list used for condition resolution.  So, if we `setPropert('foo', 'bar')`
+  we can then have a `[foo=bar]` rule in the style files.
+
+#### Ti Platform Properties
+
+By default, Tylus can condition on these Ti.Platform properties:
+
+* osname (alias device)
+* density
+* dpi
+* username
+* version
 
 License
 -------
