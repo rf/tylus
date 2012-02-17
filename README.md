@@ -284,4 +284,4 @@ Example
 License
 -------
 
-[https://github.com/russfrank/tylus/blob/master/LICENSE](MIT).
+[MIT](https://github.com/russfrank/tylus/blob/master/LICENSE).
