@@ -1,13 +1,9 @@
 Tylus - Titanium Stylus
 =======================
 
-Note: this is super super beta.  It might be crappy, slow, and mess things up.
-Please test and report issues!
+Note: Device conditionals now work as expected.
 
-Note 2: Don't put a device conditional
-in the root, it will break things.  Make these the children of other objects.
-
-Note 3: if you need a newline, use `<br>`.
+Note 2: if you need a newline, use `<br>`.
 
 New: experimental support for less css engine!
 
