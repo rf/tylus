@@ -7,7 +7,7 @@ Note 2: if you need a newline, use `<br>`.
 
 New: experimental support for less css engine!
 
-Install tylus with npm
+Tylus requires [node and npm](https://github.com/creationix/nvm).  Install tylus with npm
 
     git clone git://github.com/russfrank/tylus.git
     npm install tylus
@@ -110,7 +110,7 @@ meanwhile, in some javascript file
 var stuff = T.Label({tyle: '.special', strings: {message: 'awesome stuff'}});
 ```
 
-### Augmented factory methods of all Ti.UI objects in the T namespace
+### Factory Methods for UI Creation
 
 These much nicer looking constructors are not only a reasonable length but
 also will lookup styles before generating the object.
@@ -223,6 +223,63 @@ Example
           text "this is an ipad!"
        #myid
          text "some id label thing"
+
+### Reference
+
+#### UI Creation
+
+* Matrix2D- create2DMatrix
+* Matrix3D- create3DMatrix
+* Indicator- createActivityIndicator
+* AlertDialog- createAlertDialog
+* Animation- createAnimation
+* Button- createButton
+* ButtonBar- createButtonBar
+* CoverFlow- createCoverFlow
+* DashItem- createDashboardItem
+* Dash- createDashboardView
+* EmailDialog- createEmailDialog
+* Image- createImageView
+* OptionDialog- createOptionDialog
+* Label- createLabel
+* Picker- createPicker
+* PickerRow- createPickerRow
+* PickerCol- createPickerCol
+* ProgressBar- createProgressBar
+* Scroll- createScrollView
+* Scrollable- createScrollableView
+* SearchBar- createSearchBar
+* Slider- createSlider
+* Switch- createSwitch
+* Tab- createTab 
+* TabGroup- createTabGroup
+* TabbedBar- createTabbedBar
+* Table- createTableView
+* TableRow- createTableViewRow
+* TableSection- createTableViewSection
+* TextArea- createTextArea
+* TextField- createTextField
+* Toolbar- createToolbar
+* View- createView
+* Web- createWebView
+* Window- createWindow
+
+#### Other Methods
+
+* wrapEmitter (emitter) - adds .on, .off, .fire to a Titanium event emitter
+* apply (obj, type, style) - augments obj with styles.  `type` is a string
+  describing a shortened Titanium type (ie Label, DashItem). `style` is a
+  `tyle`; a style lookup string like `#id .class1` or an object with `tyle`
+  or `id` or `className` or `classNames` properties.
+* load (file) - tries to load styles from `file`. Note that `file` is
+  `require()`ed and as such should not have an extension.  Returns true on
+  success, false on error.
+* getProps (type, args) - gets computed style properties. `type` is a
+  shorthand Titanium type; `args` is the arguments it was created with for
+  extracting the `tyle` or `id` etc properties.
+* setDebugMode (value) - sets the debug mode to `value`.  If `value` is
+  truthy, event handlers placed on emitters will be wrapped in an
+  exception handler.  Defaults to false.
 
 License
 -------
