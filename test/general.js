@@ -11,21 +11,26 @@ suite.addBatch({
          exec('tylus general', this.callback);
       },
 
-      runs: function (err, sterr, stdout) {
+      runs: function (err, stderr, stdout) {
          assert.isNull(err);
       },
 
       output: {
-         topic: T.load(require('./general/style').styles),
+         topic: function () {
+            return T.load(require('./general/style').styles);
+         },
 
-         'is good': function (topic) {
+         'valid': function (topic) {
             assert.isTrue(topic);
          } 
       },
 
       lookup: {
          class1: {
-            topic: T.getStyles('Label', {tyle: '.class1'}),
+            topic: function () {
+               T.setProperty('someprop', 'someval');
+               return T.getStyles('Label', {tyle: '.class1'});
+            },
 
             'handled class property': function (topic) {
                assert.equal(topic.text, "why hello there");
@@ -46,6 +51,10 @@ suite.addBatch({
 
             'handled nested version conditional': function (topic) {
                assert.equal(topic.left, 27);
+            },
+
+            'handled nested custom conditional': function (topic) {
+               assert.equal(topic.backgroundColor, '#fefefe');
             }
          }
 
