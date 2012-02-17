@@ -228,41 +228,41 @@ Example
 
 #### UI Creation
 
-* Matrix2D- create2DMatrix
-* Matrix3D- create3DMatrix
-* Indicator- createActivityIndicator
-* AlertDialog- createAlertDialog
-* Animation- createAnimation
-* Button- createButton
-* ButtonBar- createButtonBar
-* CoverFlow- createCoverFlow
-* DashItem- createDashboardItem
-* Dash- createDashboardView
-* EmailDialog- createEmailDialog
-* Image- createImageView
-* OptionDialog- createOptionDialog
-* Label- createLabel
-* Picker- createPicker
-* PickerRow- createPickerRow
-* PickerCol- createPickerCol
-* ProgressBar- createProgressBar
-* Scroll- createScrollView
-* Scrollable- createScrollableView
-* SearchBar- createSearchBar
-* Slider- createSlider
-* Switch- createSwitch
-* Tab- createTab 
-* TabGroup- createTabGroup
-* TabbedBar- createTabbedBar
-* Table- createTableView
-* TableRow- createTableViewRow
-* TableSection- createTableViewSection
-* TextArea- createTextArea
-* TextField- createTextField
-* Toolbar- createToolbar
-* View- createView
-* Web- createWebView
-* Window- createWindow
+* Matrix2D - create2DMatrix
+* Matrix3D - create3DMatrix
+* Indicator - createActivityIndicator
+* AlertDialog - createAlertDialog
+* Animation - createAnimation
+* Button - createButton
+* ButtonBar - createButtonBar
+* CoverFlow - createCoverFlow
+* DashItem - createDashboardItem
+* Dash - createDashboardView
+* EmailDialog - createEmailDialog
+* Image - createImageView
+* OptionDialog - createOptionDialog
+* Label - createLabel
+* Picker - createPicker
+* PickerRow - createPickerRow
+* PickerCol - createPickerCol
+* ProgressBar - createProgressBar
+* Scroll - createScrollView
+* Scrollable - createScrollableView
+* SearchBar - createSearchBar
+* Slider - createSlider
+* Switch - createSwitch
+* Tab - createTab 
+* TabGroup - createTabGroup
+* TabbedBar - createTabbedBar
+* Table - createTableView
+* TableRow - createTableViewRow
+* TableSection - createTableViewSection
+* TextArea - createTextArea
+* TextField - createTextField
+* Toolbar - createToolbar
+* View - createView
+* Web - createWebView
+* Window - createWindow
 
 #### Other Methods
 
