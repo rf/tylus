@@ -5,7 +5,7 @@ Note: Device conditionals now work as expected.
 
 Note 2: if you need a newline, use `<br>`.
 
-New: experimental support for less css engine!
+New: less support now passes all tests!
 
 Tylus requires [node and npm](https://github.com/creationix/nvm).  Install tylus with npm
 
@@ -124,6 +124,13 @@ meanwhile, in some javascript file
 ```
 var stuff = T.Label({tyle: '.special', strings: {message: 'awesome stuff'}});
 ```
+
+### camelCase or dash-separation
+
+The less css compiler assumes that any property name that is camelCased is a
+syntax error, since no actual css property names are camel cased.  To work around
+this, tylus supports the use of dash-separated properties; these will be converted
+to camelCased properties upon compilation.  See the test suite for an example.
 
 ### Factory Methods for UI Creation
 
