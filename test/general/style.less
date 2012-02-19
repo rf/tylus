@@ -1,0 +1,44 @@
+DashItem {
+   left: 15;
+   color: blue;
+   text: 'base Label text';
+   font {
+      fontSize: 15;
+      fontStyle: bold;
+   }
+   .class1 {
+      text: "why hello there";
+      [device=iphone] {
+         [version=5] {
+            left: 27;
+         }
+         top: 40;
+      }
+      [device=ipad] {
+         top: 100;
+      }
+   }
+   #someid {
+      text: "hello there <%= message %>";
+      .foobarbaz {
+         text: "something";
+         font {
+            fontSize: 15;
+         }
+      }
+      .asdf {
+         text: "class asdf";
+      }
+      .class2 {
+         right: 34;
+         computedProperty: "`console.toString() + ' is great'`";
+      }
+   }
+   [device=iphone] {
+      [density=high] {
+         [someprop=someval] {
+            backgroundColor: #fefefe;
+         }
+      }
+   }
+}
