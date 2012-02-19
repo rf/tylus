@@ -1,10 +1,10 @@
 DashItem {
    left: 15;
-   color: blue;
+   color: #0f0f0f;
    text: 'base Label text';
    font {
-      fontSize: 15;
-      fontStyle: bold;
+      font-size: 15;
+      font-style: bold;
    }
    .class1 {
       text: "why hello there";
@@ -23,7 +23,7 @@ DashItem {
       .foobarbaz {
          text: "something";
          font {
-            fontSize: 15;
+            font-size: 15;
          }
       }
       .asdf {
@@ -31,13 +31,13 @@ DashItem {
       }
       .class2 {
          right: 34;
-         computedProperty: "`console.toString() + ' is great'`";
+         computed-property: "`console.toString() + ' is great'`";
       }
    }
    [device=iphone] {
       [density=high] {
          [someprop=someval] {
-            backgroundColor: #fefefe;
+            background-color: #fefefe;
          }
       }
    }

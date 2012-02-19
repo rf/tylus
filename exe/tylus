@@ -105,7 +105,7 @@ function processCSS (err, css, cb) {
          // camelcase property names that use dashes
          split[0].replace(/([a-z]{2,10})-([a-z]{2,10})/, 
             function (match, lowerPart, upperPart) {
-               return lowerpart + upperpart.slice(0,1).toUpperCase() + upperpart.slice(1);
+               return lowerPart + upperPart.slice(0,1).toUpperCase() + upperPart.slice(1);
             }
          );
          memo[split[0]] = split[1];

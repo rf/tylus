@@ -18,10 +18,11 @@ function styleLookupTests (type) {
          },
 
          'base property': function (topic) {
-            assert.equal(topic.color, '#00f');
+            assert.equal(topic.color, '#0f0f0f');
          },
 
          'object property': function (topic) {
+            assert.isObject(topic.font);
             assert.equal(topic.font.fontSize, 15);
             assert.equal(topic.font.fontStyle, 'bold');
          },
