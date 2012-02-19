@@ -49,7 +49,9 @@ function resolveSelectors (selectors) {
             ret[value] = ret[value] || {};
             ret = ret[value];
          });
-      } else {
+      } 
+
+      else {
          if (_.contains(objProps, selector)) {
             // its an object property so it shouldn't get its own subnode
             ret.self = ret.self || {};
@@ -64,6 +66,7 @@ function resolveSelectors (selectors) {
          }
       }
    });
+
    if (objProp) {
       return ret;
    } else {
@@ -97,6 +100,14 @@ function processCSS (err, css, cb) {
                }
             }
          }
+         console.log(split[0]);
+
+         // camelcase property names that use dashes
+         split[0].replace(/([a-z]{2,10})-([a-z]{2,10})/, 
+            function (match, lowerPart, upperPart) {
+               return lowerpart + upperpart.slice(0,1).toUpperCase() + upperpart.slice(1);
+            }
+         );
          memo[split[0]] = split[1];
          return memo;
       }, {});
@@ -167,23 +178,24 @@ function main () {
                   }
                );
             } 
-            
+
             else if (fileData[item].ext === 'less') {
                console.log('lessing ' + item);
                lessparser = new less.Parser({
                   paths: ['.', './lib'],
                   filename: item
                });
+
                lessparser.parse(String(fileData[item].data), function (err, tree) {
                   processCSS(err, tree.toCSS({compress: true}), cb);
                });
             }
          }, function (err) {
-
             if (err) {
                console.error(err.message);
                process.exit(1);
             }
+
             console.log('writing file ' + process.argv[2] + '/style.js');
             writeFileSync(
                process.argv[2]+"/style.js", 
@@ -196,3 +208,5 @@ function main () {
 }
 
 main();
+
+// vim: syntax=JavaScript
