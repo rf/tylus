@@ -95,28 +95,26 @@ And, of course, all of the awesome features of [Stylus](http://learnboost.github
 
 ### JS Evaluation
 
-If you need to have a style consist of javascript, wrap it in quotes and
-backticks:
+If you need a style to consist of evaluated Javascript, use the underscore
+templating:
 
     Table
         .grouped
             [device=iphone]
-                style "`Ti.UI.iPhone.TableViewStyle.GROUPED`"
+                style "<%= Ti.UI.iPhone.TableViewStyle.GROUPED %>"
                 backgroundColor transparent
                 rowBackgroundColor white
-
-The javascript will be evaluated the first time the style is looked up.
 
 ### String Interpolation
 
 If tylus can find underscore.js, underscore's string interpolation will be
-applied to your objects' `title` and `text` properties.  You specify the
+applied to all properties of your object.  You specify the
 strings in a `strings` object passed into the constructor.  For example:
 
 ```
 Label
    .special
-      text "This special label says <%=message%>!"
+      text "This special label says <%= message %>!"
 ```
 
 meanwhile, in some javascript file
@@ -124,6 +122,9 @@ meanwhile, in some javascript file
 ```
 var stuff = T.Label({tyle: '.special', strings: {message: 'awesome stuff'}});
 ```
+
+The Titanium platform properties and anything you set with `T.setProperty(prop, value)`
+will also be available via this templating system.
 
 ### camelCase or dash-separation
 
