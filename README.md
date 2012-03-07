@@ -53,6 +53,11 @@ property:
     label = T.Label({tyle: '#mylabel .special'});
     win = T.Window({id: 'Settings'});
 
+If you're only specifying a style and don't need to specify any other options,
+just pass the selector as the only argument to the constructor:
+
+    table = T.Table('#users .grouped');
+
 ### Platform Conditioning
 
 Conditioning on device type:
