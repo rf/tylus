@@ -1,5 +1,6 @@
 {
    "name"         : "tylus",
+   "preferGlobal": "true",
    "description"  : "Titanium stylesheet magic via Stylus",
    "version"      : "0.0.0",
    "author"       : "Russ Frank <russ.frank@rutgers.edu>",
