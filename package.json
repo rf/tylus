@@ -3,6 +3,7 @@
    "preferGlobal": "true",
    "description"  : "Titanium stylesheet magic via Stylus",
    "version"      : "0.0.1",
+   "homepage"     : "http://github.com/russfrank/tylus",
    "author"       : "Russ Frank <russ.frank@rutgers.edu>",
    "keywords"     : ["css", "mobile", "titanium"],
    "engines"      : {"node": "> 0.4.x"},
