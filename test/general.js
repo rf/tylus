@@ -63,7 +63,7 @@ function styleLookupTests (type) {
 suite.addBatch({
    tylus: { 
       topic: function () {
-         exec('tylus general', this.callback);
+         exec('../exe/tylus general', this.callback);
       },
 
       runs: function (err, stdout, stderr) {
@@ -82,6 +82,26 @@ suite.addBatch({
 
       stylus: styleLookupTests('Label'),
       less: styleLookupTests('DashItem')
+   }
+}).addBatch({
+   'tylus, when specifying an alternate output directory': {
+      topic: function () {
+         exec('../exe/tylus -o outdir srcdir', this.callback);
+      },
+
+      runs: function (err, stdout, stderr) {
+         assert.isNull(err);
+      },
+
+      output: {
+         topic: function () {
+            return T.load(require('./general/style').styles);
+         },
+
+         'valid': function (topic) {
+            assert.isTrue(topic);
+         } 
+      }
    }
 });
 
