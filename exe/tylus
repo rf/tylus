@@ -141,7 +141,7 @@ function main () {
       }
 
    } catch (e) {
-      console.log('usage: tylus [options] srcdir\o-o\tspecify output dir');
+      console.log('usage: tylus [options] srcdir\n-o\tspecify output dir');
       process.exit(1);
    }
 
