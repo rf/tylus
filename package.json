@@ -2,7 +2,7 @@
    "name"         : "tylus",
    "preferGlobal": "true",
    "description"  : "Titanium stylesheet magic via Stylus",
-   "version"      : "0.0.2",
+   "version"      : "0.0.3",
    "homepage"     : "http://github.com/russfrank/tylus",
    "author"       : "Russ Frank <russ.frank@rutgers.edu>",
    "keywords"     : ["css", "mobile", "titanium"],
