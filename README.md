@@ -1,16 +1,15 @@
-Tylus - Titanium Stylus
-=======================
+Tylus - Titanium Stylus / Less
+==============================
 
-Note: Device conditionals now work as expected.
+Note: if you need a newline, use `<br>`.
 
-Note 2: if you need a newline, use `<br>`.
+Tylus requires node.  You can install node in several ways; I prefer to use
+[nvm](https://github.com/creationix/nvm), in which case you do not need `sudo`
+in the command below.  You can also install node from source manually, as
+documented [here](https://github.com/joyent/node/wiki/Installation), in which
+case you do need the `sudo` in the command below.
 
-New: less support now passes all tests!
-
-Tylus requires [node and npm](https://github.com/creationix/nvm).  Install tylus with npm
-
-    git clone git://github.com/russfrank/tylus.git
-    npm install tylus
+    sudo npm install -g tylus
 
 Make a test .styl file
 

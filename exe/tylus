@@ -120,20 +120,33 @@ function main () {
    var files = [],
        walker,
        fileData = {},
-       stat;
+       stat,
+       argv = require('optimist').argv,
+       srcDir,
+       outDir;
+
    try {
-      process.argv[2];
-      stat = statSync(process.argv[2]).isDirectory();
+      srcDir = argv._[0];
+      stat = statSync(srcDir).isDirectory();
       if (!stat) {
          throw ''; 
       }
+
+      outDir = argv.o;
+      if (!outDir) outDir = srcDir;
+
+      stat = statSync(outDir).isDirectory();
+      if (!stat) {
+         throw ''; 
+      }
+
    } catch (e) {
-      console.log('usage: tylus srcdir');
+      console.log('usage: tylus [options] srcdir\n-o\tspecify output dir');
       process.exit(1);
    }
 
-   walker = walk.walk(process.argv[2]);
-   console.log('exploring ' + process.argv[2]);
+   walker = walk.walk(srcDir);
+   console.log('exploring ' + srcDir);
 
    walker.on('file', function (root, stats, next) {
       var filename = stats.name,
@@ -198,7 +211,7 @@ function main () {
             }
 
             writeFileSync(
-               process.argv[2]+"/style.js", 
+               outDir + "/style.js", 
                "exports.styles="+JSON.stringify(out) + ";"
             );
          });
